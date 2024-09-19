@@ -34,8 +34,8 @@ class MisLoanImporter extends Importer
                 ->rules(['max:100']),
             ImportColumn::make('KODE_KOLEK')
                 ->label('KODE_KOLEK')
-                ->boolean()
-                ->rules(['boolean']),
+                ->numeric()
+                ->rules(['integer']),
             ImportColumn::make('JML_HRI_PKK')
                 ->numeric()
                 ->rules(['integer']),

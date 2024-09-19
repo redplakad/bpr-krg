@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',         // Menambahkan kolom role
+        'avatar',       // Menambahkan kolom avatar
+        'branch_code',  // Menambahkan kolom branch_code
     ];
 
     /**
