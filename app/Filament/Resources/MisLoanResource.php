@@ -59,7 +59,6 @@ class MisLoanResource extends Resource
                     ? [
                         ImportAction::make()
                             ->importer(MisLoanImporter::class)
-                            ->chunkSize(1000)
                     ] 
                     : []
             )
