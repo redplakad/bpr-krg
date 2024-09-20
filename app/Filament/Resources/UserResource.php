@@ -13,12 +13,27 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Contracts\Support\Htmlable;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Daftar Pegawai'; // Ganti dengan title navigasi yang diinginkan
+    }
+
+    public function getTitle(): string | Htmlable
+    {
+        return __('Daftar Pegawai');
+    }
+    public static function getPluralLabel(): string
+    {
+        return __('Daftar Pegawai');
+    }
 
     public static function form(Form $form): Form
     {
@@ -66,12 +81,12 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()->visible(fn () => auth()->id() === 2),
+                Tables\Actions\DeleteAction::make()->visible(fn () => auth()->id() === 2),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->visible(fn () => auth()->id() === 2),
                 ]),
             ]);
     }
