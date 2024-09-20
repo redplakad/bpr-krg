@@ -21,7 +21,7 @@ class MisLoanResource extends Resource
 {
     protected static ?string $model = MisLoan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
     
     public static function getNavigationLabel(): string
     {
@@ -59,6 +59,7 @@ class MisLoanResource extends Resource
                     ? [
                         ImportAction::make()
                             ->importer(MisLoanImporter::class)
+                            ->chunkSize(1000)
                     ] 
                     : []
             )
