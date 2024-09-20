@@ -9,9 +9,11 @@ use Filament\Widgets\ChartWidget;
 
 class pencairanChart extends ChartWidget
 {
-    protected static ?string $heading = 'Pencairan Kredit';
+    protected static ?string $heading = 'Pencairan Selama Setahun';
 
     protected LoanRepository $loanRepository;
+
+    protected static string $color = 'info';
 
     public function __construct()
     {
@@ -33,9 +35,11 @@ class pencairanChart extends ChartWidget
                 [
                     'label' => 'Pencairan Kredit Tahun Ini',
                     'data' => $pencairanPerBulan,
+                    'fill' => true,
+                    'tension' => 0.3
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
         ];
     }
 

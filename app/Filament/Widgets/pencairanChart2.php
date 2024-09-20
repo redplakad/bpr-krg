@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 
 class pencairanChart2 extends ChartWidget
 {
-    protected static ?string $heading = 'Pencairan Kredit';
+    protected static ?string $heading = 'Pencairan Dalam Sebulan';
 
     protected LoanRepository $loanRepository;
 
@@ -31,16 +31,17 @@ class pencairanChart2 extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Pencairan Kredit Tahun Ini',
+                    'label' => 'Pencairan Kredit Bulan Ini',
                     'data' => $pencairanPerTanggal,
+                    'fill' => true,
+                    'tension' => 0.2,
                 ],
             ],
-            'labels' => [],
         ];
     }
 
     protected function getType(): string
     {
-        return 'bar';
+        return 'line';
     }
 }
