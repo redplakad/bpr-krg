@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 
 use App\Models\MisLoan;
 use App\Models\Setting;
+use App\Models\User;
 use App\Filament\Resources\MisLoanResource\Pages;
 use App\Filament\Resources\MisLoanResource\RelationManagers;
 use Filament\Forms;
@@ -107,6 +108,13 @@ class MisLoanResource extends Resource
                         ->visible(fn () => auth()->id() === 2), // Kondisi hanya untuk user dengan ID 2
                 ]),
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $datadate = Setting::where('name', 'DATADATE')->first();
+        $cab = '007';
+        return parent::getEloquentQuery()->where('DATADATE', $datadate->value)->where('CAB', auth()->user()->branch_code);
     }
 
     public static function getRelations(): array
