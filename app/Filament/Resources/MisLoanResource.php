@@ -113,8 +113,8 @@ class MisLoanResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         $datadate = Setting::where('name', 'DATADATE')->first();
-        $cab = '007';
-        return parent::getEloquentQuery()->where('DATADATE', $datadate->value)->where('CAB', auth()->user()->branch_code);
+        $cab = auth()->user()->branch_code;
+        return parent::getEloquentQuery()->where('DATADATE', $datadate->value)->where('CAB', $cab);
     }
 
     public static function getRelations(): array

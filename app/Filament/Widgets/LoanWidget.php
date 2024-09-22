@@ -2,6 +2,8 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Setting;
+use App\Models\User;
 use App\Repositories\LoanRepository;
 use Carbon\Carbon;
 use Filament\Support\Colors\Color;
@@ -21,8 +23,10 @@ class LoanWidget extends BaseWidget
 
     protected function getStats(): array
     {
-        $cab = '007';
-        $datadate = '20240918';
+        
+        $datadate = Setting::where('name', 'DATADATE')->first();
+        $datadate = $datadate->value;
+        $cab = auth()->user()->branch_code;
 
         // Menggunakan metode dari LoanRepository
         $bakidebet = $this->loanRepository->getTotalLoan($cab, $datadate);

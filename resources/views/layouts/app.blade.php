@@ -6,6 +6,18 @@
         <meta name="application-name" content="{{ config('app.name') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="title" content="Monitoring Kredit PT BPR Serang" />
+        <meta name="description" content="Solusi Terpadu untuk Monitoring, Pengawasan, dan Mitigasi Risiko Keuangan" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="kredit.bankserang.com" />
+        <meta property="og:title" content="Monitoring Kredit PT BPR Serang" />
+        <meta property="og:description" content="Solusi Terpadu untuk Monitoring, Pengawasan, dan Mitigasi Risiko Keuangan" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="kredit.bankserang.com" />
+        <meta property="twitter:title" content="Monitoring Kredit PT BPR Serang" />
+        <meta property="twitter:description" content="Solusi Terpadu untuk Monitoring, Pengawasan, dan Mitigasi Risiko Keuangan" />
  
         <title>{{ config('app.name') }}</title>
  
