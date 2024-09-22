@@ -14,9 +14,7 @@ use App\Http\Controllers\SuratPanggilanController;
 |
 */
 
-Route::get('/', function () {
-    return redirect(route('login'));
-});
+Route::redirect('/', '/admin');
 Route::get('/login', function () {
     return redirect(route('filament.auth.login'));
 })->name('login');

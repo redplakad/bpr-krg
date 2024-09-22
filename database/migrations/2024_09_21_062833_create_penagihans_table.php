@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_debitur')->constrained('mis_loan')->onDelete('cascade');
             $table->string('nama_debitur');
-            $table->decimal('bakidebet', 30, 2);
-            $table->decimal('tunggakan_pokok', 30, 2);
-            $table->decimal('tunggakan_bunga', 30, 2);
             $table->string('petugas_ao');
             $table->text('hasil_kunjungan')->nullable();
             $table->string('status_bayar')->default('belum bayar');
