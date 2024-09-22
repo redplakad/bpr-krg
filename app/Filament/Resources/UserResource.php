@@ -21,6 +21,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $navigationGroup = 'Pengaturan';
+
     public static function getNavigationLabel(): string
     {
         return 'Daftar Pegawai'; // Ganti dengan title navigasi yang diinginkan

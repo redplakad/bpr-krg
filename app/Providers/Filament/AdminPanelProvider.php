@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -17,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Pages\Tenancy\RegisterTeam;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -59,6 +61,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->font('Poppins')
-            ->favicon(asset('images/favicon.png'));;
+            ->favicon(asset('images/favicon.png'));
+            //>tenant(Team::class);
+            //->tenantRegistration(RegisterTeam::class);
     }
 }

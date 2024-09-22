@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SuratPanggilanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,6 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return redirect(route('filament.auth.login'));
 })->name('login');
+
+Route::get('/admin/surat-panggilan/{id}', [SuratPanggilanController::class, 'print'])
+    ->name('filament.admin.surat-panggilan');

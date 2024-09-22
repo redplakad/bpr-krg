@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources;
 
+
+use App\Models\MisLoan;
 use App\Filament\Resources\MisLoanResource\Pages;
 use App\Filament\Resources\MisLoanResource\RelationManagers;
-use App\Models\MisLoan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -22,6 +23,8 @@ class MisLoanResource extends Resource
     protected static ?string $model = MisLoan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
+
+    protected static ?string $navigationGroup = 'Manajemen Kredit';
     
     public static function getNavigationLabel(): string
     {
@@ -41,6 +44,11 @@ class MisLoanResource extends Resource
     public static function getPluralLabel(): string
     {
         return __('Nominatif Kredit');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class); // Menentukan relasi ke model Team
     }
 
     public static function form(Form $form): Form
@@ -90,6 +98,7 @@ class MisLoanResource extends Resource
             ])
             ->actions([
                 //Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -111,7 +120,8 @@ class MisLoanResource extends Resource
         return [
             'index' => Pages\ListMisLoans::route('/'),
             'create' => Pages\CreateMisLoan::route('/create'),
-            'edit' => Pages\EditMisLoan::route('/{record}/edit'),
+            //'edit' => Pages\EditMisLoan::route('/{record}/edit'),
+            'view' => Pages\ViewMisLoan::route('/{record}')
         ];
     }
 }
