@@ -50,7 +50,7 @@ class LoanRepository
         // Kode yang sama dengan getDailyDisbursement tetapi dengan kondisi yang berbeda
     }
 
-    public function getMonthlyDisbursement(): float
+    public function getMonthlyDisbursement(string $cab, string $datadate): float
     {
         // Mengambil total pencairan bulanan
         $currentYear = Carbon::now()->year;
@@ -60,8 +60,8 @@ class LoanRepository
         $startDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-01")->format('Ymd');
         $endDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-" . Carbon::now()->daysInMonth)->format('Ymd');
 
-        return Cache::remember("monthly_disbursement_{$currentYear}_{$currentMonth}", 60 * 60, function () use ($startDate, $endDate) {
-            return MisLoan::whereBetween('TGL_PK', [$startDate, $endDate])->sum('POKOK_PINJAMAN');
+        return Cache::remember("monthly_disbursement_{$currentYear}_{$currentMonth}", 60 * 60, function () use ($startDate, $endDate, $cab, $datadate) {
+            return MisLoan::where('DATADATE', $datadate)->where('CAB', $cab)->whereBetween('TGL_PK', [$startDate, $endDate])->sum('POKOK_PINJAMAN');
         });
     }
 

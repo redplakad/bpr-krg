@@ -35,7 +35,7 @@ class LoanWidget extends BaseWidget
         
         // Anda bisa menambahkan logika untuk mendapatkan baki per hari jika diperlukan.
         
-        $pencairan = $this->loanRepository->getMonthlyDisbursement();
+        $pencairan = $this->loanRepository->getMonthlyDisbursement($cab, $datadate);
         $nonperform = $this->loanRepository->getNonPerformingLoans($cab, $datadate);
 
         return [

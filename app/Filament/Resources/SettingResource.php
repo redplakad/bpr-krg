@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SettingResource\Pages;
 use App\Filament\Resources\SettingResource\RelationManagers;
 use App\Models\Setting;
+use App\Models\MisLoan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
 
 class SettingResource extends Resource
 {
@@ -26,12 +28,23 @@ class SettingResource extends Resource
         return $form
             ->schema([
                 //
+                
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('value')
-                    ->required()
-                    ->maxLength(255),
+                Select::make('value')
+                ->label('Data Date')
+                ->searchable() // Menambahkan fitur pencarian
+                ->getSearchResultsUsing(fn (string $search): array => 
+                    // Filter berdasarkan DATADATE dan ambil nilai unik
+                    \App\Models\MisLoan::where('DATADATE', 'like', "%{$search}%")
+                        ->distinct('DATADATE') // Ambil nilai unik di kolom DATADATE
+                        ->get()
+                        ->mapWithKeys(fn ($item) => [
+                            $item->DATADATE => $item->DATADATE // Gabungkan nilai unik dengan dirinya sendiri
+                        ])
+                        ->toArray()
+                ),
             ]);
     }
 
