@@ -65,7 +65,7 @@ class MisLoanResource extends Resource
     {
         return $table
             ->headerActions(
-                auth()->id() === 2 
+                auth()->user()->role === 'admin'
                     ? [
                         ImportAction::make()
                             ->importer(MisLoanImporter::class)
