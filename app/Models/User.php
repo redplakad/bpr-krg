@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\HasName;
  
 
 class User extends Authenticatable implements FilamentUser, Hastenants
@@ -77,5 +78,10 @@ class User extends Authenticatable implements FilamentUser, Hastenants
     public function canAccessTenant(Model $tenant): bool
     {
         return $this->teams()->whereKey($tenant)->exists();
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->name;
     }
 }

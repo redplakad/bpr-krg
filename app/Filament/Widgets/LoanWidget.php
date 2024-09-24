@@ -51,7 +51,7 @@ class LoanWidget extends BaseWidget
                 ->chart($pencairanPerDay)
                 ->color('success'),
 
-            Stat::make('Non Performing Loan', number_format($nonperform, 2))
+            Stat::make('Non Performing Loan', number_format(($nonperform / $bakidebet) * 100,2)."%")
                 ->descriptionIcon('heroicon-m-credit-card', IconPosition::Before)
                 ->description('Non Performing Loan')
                 ->color(Color::Rose)

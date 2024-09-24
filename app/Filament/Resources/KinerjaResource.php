@@ -69,7 +69,7 @@ class KinerjaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal')
@@ -78,7 +78,7 @@ class KinerjaResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('checklist')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('lampiran1')
+                Tables\Columns\ImageColumn::make('lampiran1')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('lampiran2')
                     ->searchable(),

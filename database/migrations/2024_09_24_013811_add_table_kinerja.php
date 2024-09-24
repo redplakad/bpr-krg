@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('kinerja', function (Blueprint $table) {
             $table->id();
             $table->string('tanggal');
-            $table->string('deskripsi');
-            $table->string('checklist');
-            $table->string('lampiran1');
-            $table->string('lampiran2');
-            $table->string('lampiran3');
+            $table->string('deskripsi')->nullable();
+            $table->string('checklist')->nullable();
+            $table->string('lampiran1')->nullable();
+            $table->string('lampiran2')->nullable();
+            $table->string('lampiran3')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

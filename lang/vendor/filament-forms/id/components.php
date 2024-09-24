@@ -354,11 +354,11 @@ return [
                     'actions' => [
 
                         'create' => [
-                            'label' => 'Buat',
+                            'label' => 'Simpan',
                         ],
 
                         'create_another' => [
-                            'label' => 'Buat & buat lainnya',
+                            'label' => 'Simpan & buat lainnya',
                         ],
 
                     ],
