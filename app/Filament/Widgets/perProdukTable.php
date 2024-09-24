@@ -13,14 +13,10 @@ use Filament\Tables\Columns\TextColumn;
 
 use Carbon\Carbon;
 
-class pencairanTable extends BaseWidget
+class perProdukTable extends BaseWidget
 {
-    protected static ?string $model = MisLoan::class;
-
-    protected static ?string $heading = 'Pencairan Bulan Ini';
-
     public function table(Table $table): Table
-    {
+    {    
         $datadate = Setting::where('name', 'DATADATE')->first();
         $cab = auth()->user()->branch_code;
 
@@ -53,5 +49,6 @@ class pencairanTable extends BaseWidget
             ])
             ->filters([
             ]);
+
     }
 }
