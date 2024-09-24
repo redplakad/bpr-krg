@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('foto_jaminan1')->nullable(); // Collateral photo 1
             $table->string('foto_jaminan2')->nullable(); // Collateral photo 2
             $table->string('koordinat'); // Coordinates
-            $table->string('user_id');            
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps(); // Created at and updated at timestamps
         });
     }

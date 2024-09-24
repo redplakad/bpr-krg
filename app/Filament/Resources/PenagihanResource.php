@@ -7,6 +7,7 @@ use App\Filament\Resources\PenagihanResource\RelationManagers;
 use App\Models\Penagihan;
 use App\Models\User;
 use App\Models\MisLoan;
+use App\Models\Setting;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -49,6 +50,7 @@ class PenagihanResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $datadate = Setting::where('name', 'DATADATE')->first();
         return $form
             ->schema([
                 //
@@ -56,7 +58,8 @@ class PenagihanResource extends Resource
                 ->label('Debitur')
                 ->searchable()  // Menambahkan fitur pencarian
                 ->getSearchResultsUsing(fn (string $search): array => 
-                    \App\Models\MisLoan::where('NAMA_NASABAH', 'like', "%{$search}%")
+                    \App\Models\MisLoan::where('DATADATE', $datadate->value)
+                        ->where('NAMA_NASABAH', 'like', "%{$search}%")
                         ->limit(20)
                         ->get()
                         ->mapWithKeys(fn ($item) => [

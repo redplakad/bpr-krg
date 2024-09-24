@@ -84,4 +84,9 @@ class User extends Authenticatable implements FilamentUser, Hastenants
     {
         return $this->name;
     }
+
+    public function kantorCabang()
+    {
+        return $this->belongsTo(KantorCabang::class, 'cab');
+    }
 }

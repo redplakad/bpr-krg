@@ -141,7 +141,9 @@ class SurveyResource extends Resource
                         ->sortable(),
                 Tables\Columns\TextColumn::make('jenis_jaminan')
                         ->sortable(),
-            ])
+                Tables\Columns\ImageColumn::make('foto_debitur')
+                        ->sortable(),
+    ])
             ->filters([
                 //
             ])
@@ -155,12 +157,6 @@ class SurveyResource extends Resource
             ]);
     }
 
-    protected function mutateFormDataUsing(array $data): array
-    {
-        // Automatically set the user_id to the currently authenticated user's ID
-        $data['user_id'] = auth()->id();
-        return $data;
-    }
     public static function getPages(): array
     {
         return [
