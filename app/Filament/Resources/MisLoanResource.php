@@ -19,6 +19,8 @@ use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Contracts\Support\Htmlable;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class MisLoanResource extends Resource
 {
@@ -92,6 +94,25 @@ class MisLoanResource extends Resource
             ])
             ->filters([
                 //
+                SelectFilter::make('KODE_KOLEK')
+                ->options([
+                    '1' => '1 - Lancar',
+                    '2' => '2 - Dalam Perhatian Khusus',
+                    '3' => '3 - Kurang Lancar',
+                    '4' => '4 - Diragukan',
+                    '5' => '5 - Macet',
+                ])->label('Kolektibilitas'),
+                SelectFilter::make('AO')
+                ->options(
+                    MisLoan::query()
+                        ->select('AO')
+                        ->distinct()
+                        ->orderBy('AO')
+                        ->pluck('AO', 'AO') // Mengambil nilai AO secara distinct
+                        ->toArray()
+                )
+                ->searchable()
+                ->label('KODE AO'),
             ])
             ->actions([
                 //Tables\Actions\EditAction::make(),

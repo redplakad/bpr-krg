@@ -5,8 +5,11 @@ namespace App\Filament\Resources\MisLoanResource\Pages;
 use App\Filament\Resources\MisLoanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Konnco\FilamentImport\Actions\ImportField;
-use Konnco\FilamentImport\Actions\ImportAction;
+use Filament\Resources\Components\Tab;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Imports\MisLoanImporter;
+use Filament\Tables\Actions\ImportAction;
+
 
 class ListMisLoans extends ListRecords
 {
