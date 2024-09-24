@@ -20,6 +20,7 @@ class pencairanTable extends BaseWidget
             )
             ->columns([
                 // ...
+                
             ]);
     }
 }
