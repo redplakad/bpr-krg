@@ -19,7 +19,7 @@ class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-m-cog-8-tooth';
+    protected static ?string $navigationIcon = 'gmdi-settings-applications-o';
 
     protected static ?string $navigationGroup = 'Pengaturan';
 

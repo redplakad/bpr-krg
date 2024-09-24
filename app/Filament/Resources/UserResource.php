@@ -19,7 +19,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'gmdi-supervised-user-circle-o';
 
     protected static ?string $navigationGroup = 'Pengaturan';
 

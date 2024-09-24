@@ -11,12 +11,13 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Hidden;
 use App\Filament\Resources\SurveyResource\Pages;
+use Illuminate\Contracts\Support\Htmlable;
 
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationIcon = 'gmdi-map-o';
     
     protected static ?string $navigationGroup = 'Manajemen Kredit';
 
@@ -154,16 +155,12 @@ class SurveyResource extends Resource
             ]);
     }
 
-    protected function afterCreate(): void
+    protected function mutateFormDataUsing(array $data): array
     {
-        // Set user_id and cab after creating a survey
-        $this->record->user_id = auth()->id(); // Set user_id to authenticated user's ID
-        $this->record->cab = auth()->user()->cab; // Set cab to authenticated user's cab value
-
-        // Save updated record
-        parent::create();
+        // Automatically set the user_id to the currently authenticated user's ID
+        $data['user_id'] = auth()->id();
+        return $data;
     }
-
     public static function getPages(): array
     {
         return [

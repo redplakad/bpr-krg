@@ -48,11 +48,6 @@ class MisLoanResource extends Resource
         return __('Nominatif Kredit');
     }
 
-    public function team()
-    {
-        return $this->belongsTo(Team::class); // Menentukan relasi ke model Team
-    }
-
     public static function form(Form $form): Form
     {
         return $form
