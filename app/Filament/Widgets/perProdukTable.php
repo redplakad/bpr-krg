@@ -7,17 +7,22 @@ use App\Models\Setting;
 
 use App\Filament\Resources\MisLoanResource\Pages;
 
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Hidden;
 
 use Carbon\Carbon;
 
 class perProdukTable extends BaseWidget
 {
     protected static ?string $heading = 'Daftar Peluang Kredit';
+
 
     public function table(Table $table): Table
     {    
@@ -39,6 +44,11 @@ class perProdukTable extends BaseWidget
             )
             ->columns([
                 //
+                
+                TextColumn::make('NOMOR_REKENING')
+                    ->label('NOREK')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('NAMA_NASABAH')
                     ->label('NAMA DEBITUR')
                     ->sortable()
@@ -55,7 +65,7 @@ class perProdukTable extends BaseWidget
             ])
             ->actions([
                 //Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                //Tables\Actions\ViewAction::make(),
             ])
             ->filters([
             ]);
