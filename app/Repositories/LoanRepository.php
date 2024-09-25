@@ -43,13 +43,6 @@ class LoanRepository
         return $pencairanPerDay;
     }
 
-    public function getDailyBalance(string $cab): array
-    {
-        // Implementasi serupa dengan getDailyDisbursement()
-        // Mengambil total baki per hari berdasarkan CAB
-        // Kode yang sama dengan getDailyDisbursement tetapi dengan kondisi yang berbeda
-    }
-
     public function getMonthlyDisbursement(string $cab, string $datadate): float
     {
         // Mengambil total pencairan bulanan
@@ -142,4 +135,24 @@ class LoanRepository
             return MisLoan::where('CAB', $cab)->where('DATADATE', $datadate)->where('KODE_KOLEK', '>', 2)->sum('POKOK_PINJAMAN');
         });
     }
+
+    public function getKreditPerProdukSum(string $cab, string $datadate): array
+{
+    // Mengambil distinct nilai dari kolom KET_KD_PRD dan menghitung sum dari kolom PLAFOND_AWAL
+    $result = MisLoan::select('KET_KD_PRD')
+        ->where('CAB', $cab)
+        ->where('DATADATE', $datadate)
+        ->distinct()
+        ->get()
+        ->mapWithKeys(function ($item) use ($cab, $datadate) {
+            $sumPlafondAwal = MisLoan::where('CAB', $cab)
+                ->where('DATADATE', $datadate)
+                ->where('KET_KD_PRD', $item->KET_KD_PRD)
+                ->sum('PLAFOND_AWAL');
+
+            return [$item->KET_KD_PRD => $sumPlafondAwal];
+        });
+
+    return $result->toArray();
+}
 }

@@ -17,7 +17,7 @@ class pencairanTable extends BaseWidget
 {
     protected static ?string $model = MisLoan::class;
 
-    protected static ?string $heading = 'Pencairan Bulan Ini';
+    protected static ?string $heading = 'Daftar Pencairan Bln ini';
 
     public function table(Table $table): Table
     {

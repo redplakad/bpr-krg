@@ -31,7 +31,7 @@ class LoanWidget extends BaseWidget
         // Menggunakan metode dari LoanRepository
         $bakidebet = $this->loanRepository->getTotalLoan($cab, $datadate);
         $pencairanPerDay = $this->loanRepository->getDailyDisbursement($cab, $datadate);
-        $bakiPerDay = [];  // Anda perlu mengimplementasikan getDailyBalance di LoanRepository.
+        $bakiPerDay = $this->loanRepository->getKreditPerProdukSum($cab, $datadate);  // Anda perlu mengimplementasikan getDailyBalance di LoanRepository.
         
         // Anda bisa menambahkan logika untuk mendapatkan baki per hari jika diperlukan.
         

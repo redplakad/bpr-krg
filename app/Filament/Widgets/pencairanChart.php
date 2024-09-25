@@ -4,6 +4,7 @@ namespace App\Filament\Widgets;
 
 use App\Repositories\LoanRepository;
 use App\Models\MisLoan;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 

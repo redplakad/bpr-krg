@@ -4,6 +4,7 @@ namespace App\Filament\Widgets;
 
 use App\Repositories\LoanRepository;
 use App\Models\MisLoan;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 
@@ -21,8 +22,12 @@ class pencairanChart2 extends ChartWidget
 
     protected function getData(): array
     {
-        $cab = '007';
-        $datadate = '20240918';
+        $datadate = Setting::where('name', 'DATADATE')->first();
+        $cab = auth()->user()->branch_code;
+
+        // Menggunakan metode dari LoanRepository
+        $bakidebet = $this->loanRepository->getTotalLoan($cab, $datadate);
+        $pencairanPerBulan = $this->loanRepository->getPencairanPerBulan($cab, $datadate);
 
         // Menggunakan metode dari LoanRepository
         $bakidebet = $this->loanRepository->getTotalLoan($cab, $datadate);
