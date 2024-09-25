@@ -24,9 +24,9 @@ class pencairanChart extends ChartWidget
 
     protected function getData(): array
     {
-        $cab = '007';
-        $datadate = '20240918';
-
+        $datadate = Setting::where('name', 'DATADATE')->first();
+        $datadate = $datadate->value;
+        $cab = auth()->user()->branch_code;
         // Menggunakan metode dari LoanRepository
         $bakidebet = $this->loanRepository->getTotalLoan($cab, $datadate);
         $pencairanPerBulan = $this->loanRepository->getPencairanPerBulan($cab, $datadate);

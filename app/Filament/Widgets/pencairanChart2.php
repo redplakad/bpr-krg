@@ -23,6 +23,7 @@ class pencairanChart2 extends ChartWidget
     protected function getData(): array
     {
         $datadate = Setting::where('name', 'DATADATE')->first();
+        $datadate = $datadate->value;
         $cab = auth()->user()->branch_code;
 
         // Menggunakan metode dari LoanRepository

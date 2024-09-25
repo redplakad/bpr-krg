@@ -143,7 +143,7 @@ class SurveyResource extends Resource
                         ->sortable(),
                 Tables\Columns\ImageColumn::make('foto_debitur')
                         ->sortable(),
-    ])
+        ])
             ->filters([
                 //
             ])
