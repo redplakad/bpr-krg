@@ -21,4 +21,12 @@ class ListMisLoans extends ListRecords
             //Actions\CreateAction::make()
         ];
     }
+
+    protected function afterIndex(): void
+    {
+        // Log user activity when accessing the index page
+        activity()
+            ->causedBy(auth()->user()) // Set the user who caused the activity
+            ->log('User accessed MisLoan index page'); // Log message
+    }
 }

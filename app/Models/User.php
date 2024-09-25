@@ -14,11 +14,15 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\HasName;
+
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
  
 
 class User extends Authenticatable implements FilamentUser, Hastenants
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +58,20 @@ class User extends Authenticatable implements FilamentUser, Hastenants
         'password' => 'hashed',
     ];
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly(
+            [
+                'name',
+                'email',
+                'password',
+                'role',         // Menambahkan kolom role
+                'avatar',       // Menambahkan kolom avatar
+                'branch_code',  // Menambahkan kolom branch_code
+            ]
+        );
+    }
     public function canAccessPanel(Panel $panel): bool
     {
         // Ganti dengan logika Anda sendiri untuk menentukan akses

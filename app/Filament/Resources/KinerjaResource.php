@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Checkbox;
 use Illuminate\Contracts\Support\Htmlable;
+use Filament\Forms\Components\Select;
 
 class KinerjaResource extends Resource
 {
@@ -41,20 +42,43 @@ class KinerjaResource extends Resource
     {
         return $form
             ->schema([
+                Checkbox::make('checklist')->inline(false)->label('Checklist')
+                    ->helperText('Silahkan Ceklis apabila rencana kerja sudah selesai dikerjakan'),
                 Forms\Components\DatePicker::make('tanggal')
                     ->required(),
+                Select::make('kategori')
+                    ->searchable()
+                    ->options([
+                        'Kredit' => [
+                            'penagihan' => 'Penagihan Debitur',
+                            'survei' => 'Survei Debitur',
+                            'analisa' => 'Analisa Kredit',
+                            'slik' => 'Input Slik Kredit',
+                            'deskcollect' => 'Desk Collection',
+                            'ekspansi' => 'Ekspansi Kredit',
+                            'kunjungan' => 'Kunjungan Dinas/Perusahaan'
+                        ],
+                        'Dana' => [
+                            'pengambilan' => 'Pengambilan Dana',
+                            'pelayanan' => 'Pelayanan Nasabah',
+                            'promosi' => 'Promosi Produk',
+                        ],
+                        'Lainnya' => [
+                            'lain-lain' => 'Lain-lain',
+                        ],
+                    ])->label('Kategori'),
                 Forms\Components\TextInput::make('deskripsi')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('lampiran1')
                     ->image()
                     ->label('Lampiran Foto')
-                    ->helperText('Lampirkan foto jika diperlukan'),
+                    ->helperText('Lampirkan foto jika diperlukan')
+                    ->downloadable(),
                 Forms\Components\FileUpload::make('lampiran2')
                     ->label('Lampiran File')
-                    ->helperText('Lampirkan file berupa excel, word, text jika diperlukan'),
-                Checkbox::make('checklist')->inline(false)->label('Checklist')
-                ->helperText('Silahkan Ceklis apabila rencana kerja sudah selesai dikerjakan'),
+                    ->helperText('Lampirkan file berupa excel, word, text jika diperlukan')
+                    ->downloadable(),
             ]);
     }
 
@@ -68,7 +92,11 @@ class KinerjaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(
+                fn (Builder $query) => (auth()->user()->role === 'admin') ? $query->where('cab', auth()->user()->branch_code)->orderBy('created_at', 'desc') : $query->where('user_id', auth()->id())->orderBy('created_at', 'desc'))
             ->columns([
+                Tables\Columns\CheckboxColumn::make('checklist')
+                    ->label('Selesai'),
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
@@ -76,22 +104,8 @@ class KinerjaResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('checklist')
-                    ->searchable(),
                 Tables\Columns\ImageColumn::make('lampiran1')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('lampiran2')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('lampiran3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

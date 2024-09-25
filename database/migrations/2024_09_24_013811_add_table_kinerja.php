@@ -14,12 +14,13 @@ return new class extends Migration
         //
         Schema::create('kinerja', function (Blueprint $table) {
             $table->id();
-            $table->string('tanggal');
-            $table->string('deskripsi')->nullable();
+            $table->string('cab')->nullable();
             $table->string('checklist')->nullable();
+            $table->string('tanggal');
+            $table->string('kategori')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->string('lampiran1')->nullable();
             $table->string('lampiran2')->nullable();
-            $table->string('lampiran3')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

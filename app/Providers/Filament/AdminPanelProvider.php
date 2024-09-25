@@ -19,6 +19,8 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Pages\Tenancy\RegisterTeam;
+use Rmsramos\Activitylog\ActivitylogPlugin;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -61,7 +63,10 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->font('Poppins')
-            ->favicon(asset('images/favicon.png'));
+            ->favicon(asset('images/favicon.png'))
+            ->plugins([
+                ActivitylogPlugin::make(),
+            ]);
             //>tenant(Team::class);
             //->tenantRegistration(RegisterTeam::class);
     }

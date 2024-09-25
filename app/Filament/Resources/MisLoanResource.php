@@ -22,8 +22,12 @@ use Illuminate\Contracts\Support\Htmlable;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 class MisLoanResource extends Resource
 {
+    use LogsActivity;
     protected static ?string $model = MisLoan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
@@ -57,7 +61,11 @@ class MisLoanResource extends Resource
                 //
             ]);
     }
-
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+        // Chain fluent methods for configuration options
+    }
     public static function table(Table $table): Table
     {
         return $table

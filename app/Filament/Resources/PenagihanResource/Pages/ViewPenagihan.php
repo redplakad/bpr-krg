@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\PenagihanResource\Pages;
 
+use App\Models\User;
+
 use App\Filament\Resources\PenagihanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
@@ -14,10 +16,22 @@ class ViewPenagihan extends ViewRecord
 
     protected function getViewData(): array
     {
-        // Misalnya, kita ingin mengirimkan data tambahan dari record
+        $record = $this->record;
+        $ao = [];
+        if (is_array($record->petugas_ao)) {
+            foreach ($record->petugas_ao as $userId) {
+                // Mencari user berdasarkan ID
+                $user = User::find($userId);
+                if ($user) {
+                    // Menyimpan nama user ke dalam array $ao
+                    $ao[] = $user->name; // Mengambil nama user
+                }
+            }
+        }
         return [
             'abc' => 'Ini adalah data tambahan',
-            'record' => $this->record, // Mengirimkan record saat ini
+            'record' => $record, // Mengirimkan record saat ini
+            'ao' => $ao,
         ];
     }
 
