@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Artisan;
 
 class SettingResource extends Resource
 {
@@ -85,5 +86,11 @@ class SettingResource extends Resource
             'create' => Pages\CreateSetting::route('/create'),
             'edit' => Pages\EditSetting::route('/{record}/edit'),
         ];
+    }
+
+    public function saved($record): void
+    {
+        // Jalankan perintah artisan cache:clear setelah data diupdate
+        Artisan::call('cache:clear');
     }
 }

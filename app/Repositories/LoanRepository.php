@@ -52,10 +52,8 @@ class LoanRepository
         // Membuat rentang tanggal untuk bulan ini
         $startDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-01")->format('Ymd');
         $endDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-" . Carbon::now()->daysInMonth)->format('Ymd');
-
-        return Cache::remember("monthly_disbursement_{$currentYear}_{$currentMonth}", 60 * 60, function () use ($startDate, $endDate, $cab, $datadate) {
-            return MisLoan::where('DATADATE', $datadate)->where('CAB', $cab)->whereBetween('TGL_PK', [$startDate, $endDate])->sum('POKOK_PINJAMAN');
-        });
+        
+        return MisLoan::where('DATADATE', $datadate)->where('CAB', $cab)->whereBetween('TGL_PK', [$startDate, $endDate])->sum('POKOK_PINJAMAN');
     }
 
     public function getPencairanPerBulan(string $cab, string $datadate): array
