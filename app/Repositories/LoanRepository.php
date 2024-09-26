@@ -10,9 +10,7 @@ class LoanRepository
 {
     public function getTotalLoan(string $cab, string $datadate): float
     {
-        return Cache::remember("total_loan_{$cab}_{$datadate}", 60 * 60, function () use ($cab, $datadate) {
-            return MisLoan::where('DATADATE', $datadate)->where('CAB', $cab)->sum('POKOK_PINJAMAN');
-        });
+        return MisLoan::where('DATADATE', $datadate)->where('CAB', $cab)->sum('POKOK_PINJAMAN');
     }
 
     public function getDailyDisbursement(string $cab, string $datadate): array

@@ -24,6 +24,8 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Illuminate\Contracts\Support\Htmlable;
+use Dotswan\MapPicker\Fields\Map;
+use Dotswan\MapPicker\Infolists\MapEntry;
 
 
 class PenagihanResource extends Resource
@@ -73,9 +75,40 @@ class PenagihanResource extends Resource
                 Textarea::make('hasil_kunjungan')
                     ->label('Hasil Kunjungan')
                     ->nullable(),
-                TextInput::make('koordinat')
-                        ->label('Koordinat')
-                        ->nullable(),
+                Map::make('koordinat')
+                    ->label('Location')
+                    ->columnSpanFull()
+                    ->defaultLocation(latitude: -6.138631512906572, longitude: 106.29293376660354)
+                    ->afterStateUpdated(function (?array $state, $record): void {
+                        if ($record) {
+                            $record->latitude = $state['lat'];
+                            $record->longitude = $state['lng'];
+                        }
+                    })
+                    ->afterStateHydrated(function ($state, $record): void {
+                        if ($record && $record->latitude && $record->longitude) {
+                            $state['location'] = ['lat' => $record->latitude, 'lng' => $record->longitude];
+                        } else {
+                            $state['location'] = ['lat' => 40.4168, 'lng' => -3.7038]; // Default location
+                        }
+                    })
+                    ->extraStyles([
+                        'min-height: 50vh',
+                        'border-radius: 10px'
+                    ])
+                    ->showMarker()
+                    ->markerColor("#22c55eff")
+                    ->showFullscreenControl()
+                    ->showZoomControl()
+                    ->draggable()
+                    ->tilesUrl("https://tile.openstreetmap.de/{z}/{x}/{y}.png")
+                    ->zoom(15)
+                    ->detectRetina()
+                    ->extraTileControl([])
+                    ->extraControl([
+                        'zoomDelta'           => 1,
+                        'zoomSnap'            => 2,
+                    ]),
                 Select::make('petugas_ao')
                     ->label('Petugas AO')
                     ->multiple()  // Untuk memungkinkan pilihan ganda
@@ -111,6 +144,13 @@ class PenagihanResource extends Resource
                     ->image()
                     ->directory('penagihan/foto')
                     ->nullable(),
+                TextInput::make('latitude')
+                    ->hiddenLabel()
+                    ->hidden(),
+                
+                TextInput::make('longitude')
+                    ->hiddenLabel()
+                    ->hidden()
             ]);
     }
 
@@ -121,6 +161,17 @@ class PenagihanResource extends Resource
             Infolists\Components\TextEntry::make('nama_debitur'),
             Infolists\Components\ImageEntry::make('foto1')
                 ->columnSpanFull(),
+            MapEntry::make('location')
+                ->extraStyles([
+                    'min-height: 50vh',
+                    'border-radius: 50px'
+                ])
+                ->state(fn ($record) => ['lat' => $record?->latitude, 'lng' => $record?->longitude])
+                ->showMarker()
+                ->markerColor("#22c55eff")
+                ->showFullscreenControl()
+                ->draggable(false)
+                ->zoom(15),
         ]);
     }
     public static function table(Table $table): Table

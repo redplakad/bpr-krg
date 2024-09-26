@@ -88,6 +88,14 @@
             <div>
                 <div class="grid grid-cols-1">
                     <div class="p-4 font-semibold">
+                        Lokasi Debitur
+                    </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.93124603485!2d{{$record->koordinat['lng']}}!3d{{$record->koordinat["lat"]}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMjMuOCJTIDEwNsKwMTcnMjAuNSJF!5e0!3m2!1sid!2sid!4v1727337773322!5m2!1sid!2sid" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div>
+                <div class="grid grid-cols-1">
+                    <div class="p-4 font-semibold">
                         Foto Dokumentasi
                     </div>
                     <div class="p-4">
@@ -143,18 +151,8 @@
                         @endif
                     </div>
                 </div>
-                
-                
-                <div class="grid grid-cols-1">
-                    <div class="p-4">
-                        <a href="http://maps.google.com/?q={{ $record->koordinat }}"
-                            class="fi-btn relative grid-flow-col items-center justify-center font-semibold outline-none transition duration-75 focus-visible:ring-2 rounded-lg fi-color-gray fi-btn-color-gray fi-size-md fi-btn-size-md gap-1.5 px-3 py-2 text-sm inline-grid shadow-sm bg-white text-gray-950 hover:bg-gray-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 ring-1 ring-gray-950/10 dark:ring-white/20 fi-ac-btn-action" target="blank"> <x-heroicon-s-map class="h-6 w-6 text-red-600" /> Klik untuk melihat lokasi</a>
-                    </div>
-                </div>
             </div>
         </div>
-        <button
-            class="bg-blue-500 text-white mt-4 px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring">Button</button>
     </div>
 
 

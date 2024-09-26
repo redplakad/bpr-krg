@@ -35,6 +35,7 @@ class Penagihan extends Model
         ];
         protected $casts = [
             'petugas_ao' => 'array',
+            'koordinat' => 'array'
         ];
     
         // Relasi ke tabel mis_loan
