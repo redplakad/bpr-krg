@@ -144,13 +144,6 @@ class PenagihanResource extends Resource
                     ->image()
                     ->directory('penagihan/foto')
                     ->nullable(),
-                TextInput::make('latitude')
-                    ->hiddenLabel()
-                    ->hidden(),
-                
-                TextInput::make('longitude')
-                    ->hiddenLabel()
-                    ->hidden()
             ]);
     }
 
