@@ -147,26 +147,6 @@ class PenagihanResource extends Resource
             ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
-        ->schema([
-            Infolists\Components\TextEntry::make('nama_debitur'),
-            Infolists\Components\ImageEntry::make('foto1')
-                ->columnSpanFull(),
-            MapEntry::make('location')
-                ->extraStyles([
-                    'min-height: 50vh',
-                    'border-radius: 50px'
-                ])
-                ->state(fn ($record) => ['lat' => $record?->latitude, 'lng' => $record?->longitude])
-                ->showMarker()
-                ->markerColor("#22c55eff")
-                ->showFullscreenControl()
-                ->draggable(false)
-                ->zoom(15),
-        ]);
-    }
     public static function table(Table $table): Table
     {
         return $table
