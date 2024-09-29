@@ -68,7 +68,7 @@ class PenagihanResource extends Resource
                             $item->id => "{$item->NOMOR_REKENING} | {$item->NAMA_NASABAH} [$item->ALAMAT]" // Gabungkan NAMA_NASABAH dan CIF
                         ])
                         ->toArray()
-                ),
+                )->getOptionLabelUsing(fn ($value): ?string => MisLoan::find($value)?->NAMA_NASABAH),
                 TextInput::make('nama_debitur')
                     ->label('Nama Debitur')
                     ->required(),

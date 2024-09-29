@@ -25,7 +25,7 @@
                         No Rekening
                     </div>
                     <div class="p-4">
-                        {{ $record->id_debitur }}
+                        {{ $loan->NOMOR_REKENING }}
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         Bakidebet
                     </div>
                     <div class="p-4">
-                        {{ number_format($record->bakidebet) }}
+                        Rp. {{ number_format($loan->POKOK_PINJAMAN) }}
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         Tunggakan Pokok
                     </div>
                     <div class="p-4">
-                        {{ number_format($record->tunggakan_pokok,2) }}
+                        Rp. {{ number_format($loan->TUNGGAKAN_POKOK,2) }}
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                         Tunggakan Bunga
                     </div>
                     <div class="p-4">
-                        {{ number_format($record->tunggakan_bunga,2) }}
+                        Rp. {{ number_format($loan->TUNGGAKAN_BUNGA,2) }}
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                     <div class="p-4 font-semibold">
                         Lokasi Debitur
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.93124603485!2d{{$record->koordinat['lng']}}!3d{{$record->koordinat["lat"]}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMjMuOCJTIDEwNsKwMTcnMjAuNSJF!5e0!3m2!1sid!2sid!4v1727337773322!5m2!1sid!2sid" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="//maps.google.com/maps?q={{$record->koordinat["lat"]}},{{$record->koordinat['lng']}}&z=15&output=embed" style="border:0;width:100%;min-width:300px;max-width:745px;height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div>
@@ -98,9 +98,9 @@
                     <div class="p-4 font-semibold">
                         Foto Dokumentasi
                     </div>
-                    <div class="p-4">
+                    <div>
                         @if(!empty($record->foto1))
-                        <img src="{{ asset('storage/'.$record->foto1) }}" class="object-cover h-48 w-96">
+                        <img src="{{ asset('storage/'.$record->foto1) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
@@ -113,9 +113,9 @@
                     <div class="p-4 font-semibold">
                         Foto Dokumentasi
                     </div>
-                    <div class="p-4">                        
+                    <div>                        
                         @if(!empty($record->foto2))
-                        <img src="{{ asset('storage/'.$record->foto2) }}" class="object-cover h-48 w-96">
+                        <img src="{{ asset('storage/'.$record->foto2) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
@@ -128,9 +128,9 @@
                     <div class="p-4 font-semibold">
                         Foto Dokumentasi
                     </div>
-                    <div class="p-4">                        
+                    <div>                        
                         @if(!empty($record->foto3))
-                       <img src="{{ asset('storage/'.$record->foto3) }}" class="object-cover h-48 w-96">
+                       <img src="{{ asset('storage/'.$record->foto3) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                        @else
                        -tidak ada foto-
                        @endif
@@ -143,9 +143,9 @@
                     <div class="p-4 font-semibold">
                         Foto Dokumentasi
                     </div>
-                    <div class="p-4">                        
+                    <div>                        
                         @if(!empty($record->foto4))
-                        <img src="{{ asset('storage/'.$record->foto4) }}" class="object-cover h-48 w-96">
+                        <img src="{{ asset('storage/'.$record->foto4) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
