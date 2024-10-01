@@ -20,6 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Pages\Tenancy\RegisterTeam;
 use Rmsramos\Activitylog\ActivitylogPlugin;
+use Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -66,6 +67,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/favicon.png'))
             ->plugins([
                 ActivitylogPlugin::make(),
+            FilamentApexChartsPlugin::make(),
             ]);
             //>tenant(Team::class);
             //->tenantRegistration(RegisterTeam::class);

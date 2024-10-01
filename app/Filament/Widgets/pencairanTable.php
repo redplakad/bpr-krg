@@ -21,6 +21,7 @@ use Carbon\Carbon;
 
 class PencairanTable extends BaseWidget
 {
+
     protected static ?string $model = MisLoan::class;
 
     protected static ?string $heading = 'Daftar Pencairan Bln ini';
