@@ -21,7 +21,9 @@
                         <td class="px-6 py-4 dark:text-white">{{ number_format($loan->total_debitur) }}</td>
                         <td class="px-6 py-4 dark:text-white">Rp. {{ number_format($loan->total_pokok, 2) }}</td>
                         <td class="px-6 py-4 dark:text-white">Rp. {{ number_format($loan->total_npl, 2) }}</td>
-                        <td class="px-6 py-4 dark:text-white">{{ number_format(($loan->total_npl / $loan->total_pokok) * 100, 2) }}%</td>
+                        <td class="px-6 py-4 dark:text-white text-right">
+                            {{ $loan->total_pokok > 0 ? number_format(($loan->total_npl / $loan->total_pokok) * 100, 2) : '0.00' }}%
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
