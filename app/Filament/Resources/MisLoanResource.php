@@ -129,7 +129,7 @@ class MisLoanResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
-                        ->visible(fn () => auth()->id() === 2), // Kondisi hanya untuk user dengan ID 2
+                        ->visible(fn () => auth()->user()->role === 'admin'), // Kondisi hanya untuk user dengan ID 2
                 ]),
             ]);
     }

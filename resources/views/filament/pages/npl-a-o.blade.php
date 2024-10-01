@@ -62,6 +62,6 @@
             </table>
         </div>
     </div>
-    
-    
+
+    @livewire('nominatif-ao', ['slug' => '1234'])
 </x-filament-panels::page>

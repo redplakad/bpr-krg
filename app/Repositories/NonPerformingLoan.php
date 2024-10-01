@@ -77,12 +77,12 @@ class NonPerformingLoan
                         ->groupBy('AO')
                         ->select(
                             'AO',
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK > 0 THEN POKOK_PINJAMAN ELSE 0 END) as total_pokok'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 1 THEN POKOK_PINJAMAN ELSE 0 END) as total_1'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 2 THEN POKOK_PINJAMAN ELSE 0 END) as total_2'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 3 THEN POKOK_PINJAMAN ELSE 0 END) as total_3'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 4 THEN POKOK_PINJAMAN ELSE 0 END) as total_4'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 5 THEN POKOK_PINJAMAN ELSE 0 END) as total_5')
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK > 0 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_pokok'),
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 1 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_1'),
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 2 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_2'),
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 3 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_3'),
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 4 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_4'),
+                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 5 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_5')
                         )->orderBy('total_pokok', 'desc')->get();
         });
     }
@@ -152,19 +152,19 @@ class NonPerformingLoan
         $datadate = Setting::where('name', 'DATADATE')->first();
         $cacheKey = "loan_wilayah_kolek_by_cab_{$cab}_{$datadate->value}";
 
-        return Cache::remember($cacheKey, 60, function () use ($cab, $datadate) {
-            return MisLoan::where('DATADATE', $datadate->value)
-                        ->where('CAB', $cab)
-                        ->groupBy('KELURAHAN')
-                        ->select(
-                            'KELURAHAN',
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK > 0 THEN POKOK_PINJAMAN ELSE 0 END) as total_pokok'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 1 THEN POKOK_PINJAMAN ELSE 0 END) as total_1'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 2 THEN POKOK_PINJAMAN ELSE 0 END) as total_2'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 3 THEN POKOK_PINJAMAN ELSE 0 END) as total_3'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 4 THEN POKOK_PINJAMAN ELSE 0 END) as total_4'),
-                            DB::raw('SUM(CASE WHEN KODE_KOLEK = 5 THEN POKOK_PINJAMAN ELSE 0 END) as total_5')
-                        )->orderBy('total_pokok', 'desc')->get();
-        });
+return Cache::remember($cacheKey, 60, function () use ($cab, $datadate) {
+    return MisLoan::where('DATADATE', $datadate->value)
+                ->where('CAB', $cab)
+                ->groupBy('KELURAHAN')
+                ->select(
+                    'KELURAHAN',
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK > 0 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_pokok'),
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK = 1 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_1'),
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK = 2 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_2'),
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK = 3 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_3'),
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK = 4 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_4'),
+                    DB::raw('SUM(CASE WHEN KODE_KOLEK = 5 AND CAB = "'.$cab.'" THEN POKOK_PINJAMAN ELSE 0 END) as total_5')
+                )->orderBy('total_pokok', 'desc')->get();
+});
     }
 }

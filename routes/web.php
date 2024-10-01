@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\viewNominatifAo;
+ 
 use App\Http\Controllers\SuratPanggilanController;
+use App\Http\Controllers\DetailNominatifController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +25,6 @@ Route::get('/login', function () {
 
 Route::get('/admin/surat-panggilan/{id}', [SuratPanggilanController::class, 'print'])
     ->name('filament.admin.surat-panggilan');
+
+Route::get('/admin/nominatif-ao/{slug}', [viewNominatifAo::class, 'index'])->name('NominatifAo');
+Route::get('/admin/detail-nominatif/{slug}', [DetailNominatifController::class, 'index'])->name('detailNominatif');

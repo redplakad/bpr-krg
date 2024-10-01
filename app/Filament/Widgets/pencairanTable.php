@@ -10,10 +10,16 @@ use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Infolists\Components\Card;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Widgets\InfolistWidget;
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Infolist;
+use App\Filament\Resources\MisLoanResource\Pages;
 
 use Carbon\Carbon;
 
-class pencairanTable extends BaseWidget
+class PencairanTable extends BaseWidget
 {
     protected static ?string $model = MisLoan::class;
 
@@ -24,8 +30,8 @@ class pencairanTable extends BaseWidget
         $datadate = Setting::where('name', 'DATADATE')->first();
         $cab = auth()->user()->branch_code;
 
-        $currentYear = Carbon::now()->year;
-        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::createFromFormat('Ymd', $datadate->value)->year;
+        $currentMonth = Carbon::createFromFormat('Ymd', $datadate->value)->month;
 
         return $table
             ->query(
@@ -35,7 +41,6 @@ class pencairanTable extends BaseWidget
                     ->whereMonth('TGL_PK', $currentMonth),
             )
             ->columns([
-                // ...
                 TextColumn::make('NOMOR_REKENING')
                     ->label('NO REK')
                     ->sortable()
@@ -52,6 +57,32 @@ class pencairanTable extends BaseWidget
                     ->label('TGL_PK'),
             ])
             ->filters([
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
             ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('NOMOR_REKENING'),
+                TextEntry::make('NAMA_NASABAH'),
+                TextEntry::make('POKOK_PINJAMAN'),
+                TextEntry::make('TGL_AWAL_FAS')
+                    ->dateTime(),
+            ])
+            ->columns(1)
+            ->inlineLabel();
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListMisLoans::route('/'),
+            'create' => Pages\CreateMisLoan::route('/create'),
+            'view' => Pages\ViewMisLoan::route('/{record}')
+        ];
     }
 }

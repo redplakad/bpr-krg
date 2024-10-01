@@ -15,9 +15,9 @@ class LoanRepository
 
     public function getDailyDisbursement(string $cab, string $datadate): array
     {
-        $currentYear = Carbon::now()->year;
-        $currentMonth = Carbon::now()->month;
-        $currentDay = Carbon::now()->day;
+        $currentYear = Carbon::createFromFormat('Ymd', $datadate)->year;
+        $currentMonth = Carbon::createFromFormat('Ymd', $datadate)->month;
+        $currentDay = Carbon::createFromFormat('Ymd', $datadate)->day;
 
         // Membuat rentang tanggal untuk bulan ini (dari tanggal 1 sampai dengan hari ini)
         $startDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-01");
@@ -44,8 +44,8 @@ class LoanRepository
     public function getMonthlyDisbursement(string $cab, string $datadate): float
     {
         // Mengambil total pencairan bulanan
-        $currentYear = Carbon::now()->year;
-        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::createFromFormat('Ymd', $datadate)->year;
+        $currentMonth = Carbon::createFromFormat('Ymd', $datadate)->month;
 
         // Membuat rentang tanggal untuk bulan ini
         $startDate = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-01")->format('Ymd');
@@ -56,7 +56,7 @@ class LoanRepository
 
     public function getPencairanPerBulan(string $cab, string $datadate): array
     {
-        $currentYear = Carbon::now()->year;
+        $currentYear = Carbon::createFromFormat('Ymd', $datadate)->year;
     
         // Array untuk menyimpan total pencairan per bulan
         $pencairanPerBulan = array_fill(0, 12, 0); // Inisialisasi array dengan 12 bulan
