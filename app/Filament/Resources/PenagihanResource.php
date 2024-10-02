@@ -53,6 +53,9 @@ class PenagihanResource extends Resource
     public static function form(Form $form): Form
     {
         $datadate = Setting::where('name', 'DATADATE')->first();
+        
+        $cab = auth()->user()->branch_code;
+        
         return $form
             ->schema([
                 //
@@ -61,6 +64,7 @@ class PenagihanResource extends Resource
                 ->searchable()  // Menambahkan fitur pencarian
                 ->getSearchResultsUsing(fn (string $search): array => 
                     \App\Models\MisLoan::where('DATADATE', $datadate->value)
+                        ->where('CAB', $cab)
                         ->where('NAMA_NASABAH', 'like', "%{$search}%")
                         ->limit(20)
                         ->get()
