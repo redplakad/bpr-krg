@@ -20,18 +20,25 @@ class LabaOverview extends BaseWidget
         $datadate = $datadate->value;
         $cab = auth()->user()->branch_code;
 
-        $laba = NeracaHarian::where('NOMOR_REKENING', 31002)->first();
-        if(!empty($laba)){
-            $laba = $laba->SALDO_AKHIR;
-        }else{
-            $laba = 0;
-        }
+   
+        $labaRecord = NeracaHarian::where('NOMOR_REKENING', '10100')->first();
+        $laba = $labaRecord->SALDO_AKHIR ?? 10;
 
         return [
-            Stat::make('Laba Berjalan', number_format($laba, 2))
+            Stat::make('Laba Berjalan', number_format(100000000, 2))
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Laba aktual') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Amber),
+                
+            Stat::make('Pendapatan', number_format($laba, 2))
+                ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
+                ->description('Pendapatan Bulan Ini') // Pastikan Anda mengisi chart ini jika ada datanya.
+                ->color(Color::Teal),
+
+            Stat::make('Beban', number_format($laba, 2))
+                ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
+                ->description('Beban Bulan Ini') // Pastikan Anda mengisi chart ini jika ada datanya.
+                ->color(Color::Orange),
             //
         ];
     }

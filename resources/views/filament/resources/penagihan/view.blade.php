@@ -100,7 +100,7 @@
                     </div>
                     <div>
                         @if(!empty($record->foto1))
-                        <img src="{{ asset('storage/'.$record->foto1) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
+                        <img src="{{ asset('storage/'.$record->foto1) }}" class="max-w-full  h-auto max-w-md rounded-lg cursor-pointer transition-transform duration-300 transform hover:scale-105" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
@@ -115,7 +115,7 @@
                     </div>
                     <div>                        
                         @if(!empty($record->foto2))
-                        <img src="{{ asset('storage/'.$record->foto2) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
+                        <img src="{{ asset('storage/'.$record->foto2) }}" class="max-w-full  h-auto max-w-md rounded-lg cursor-pointer transition-transform duration-300 transform hover:scale-105" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
@@ -130,7 +130,7 @@
                     </div>
                     <div>                        
                         @if(!empty($record->foto3))
-                       <img src="{{ asset('storage/'.$record->foto3) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
+                       <img src="{{ asset('storage/'.$record->foto3) }}" class="max-w-full  h-auto max-w-md rounded-lg cursor-pointer transition-transform duration-300 transform hover:scale-105" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                        @else
                        -tidak ada foto-
                        @endif
@@ -145,7 +145,7 @@
                     </div>
                     <div>                        
                         @if(!empty($record->foto4))
-                        <img src="{{ asset('storage/'.$record->foto4) }}" class="object-cover" style="width:100%;max-width:745px;height:auto;max-height:400px;">
+                        <img src="{{ asset('storage/'.$record->foto4) }}" class="max-w-full  h-auto max-w-md rounded-lg cursor-pointer transition-transform duration-300 transform hover:scale-105" style="width:100%;max-width:745px;height:auto;max-height:400px;">
                         @else
                         -tidak ada foto-
                         @endif
@@ -161,4 +161,18 @@
             class="fi-btn relative grid-flow-col items-center justify-center font-semibold outline-none transition duration-75 focus-visible:ring-2 rounded-lg fi-color-gray fi-btn-color-gray fi-size-md fi-btn-size-md gap-1.5 px-3 py-2 text-sm inline-grid shadow-sm bg-white text-gray-950 hover:bg-gray-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 ring-1 ring-gray-950/10 dark:ring-white/20 fi-ac-btn-action">Back</a>
     </div>
 
+    <script>
+        document.getElementById("myImage").onclick = function() {
+            if (this.requestFullscreen) {
+                this.requestFullscreen();
+            } else if (this.mozRequestFullScreen) { // Firefox
+                this.mozRequestFullScreen();
+            } else if (this.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                this.webkitRequestFullscreen();
+            } else if (this.msRequestFullscreen) { // IE/Edge
+                this.msRequestFullscreen();
+            }
+        };
+    </script>
+    
 </x-filament-panels::page>
