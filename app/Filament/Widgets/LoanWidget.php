@@ -37,6 +37,12 @@ class LoanWidget extends BaseWidget
         
         $pencairan = $this->loanRepository->getMonthlyDisbursement($cab, $datadate);
         $nonperform = $this->loanRepository->getNonPerformingLoans($cab, $datadate);
+        if($bakidebet > 0)
+        {
+            $npl = ($nonperform / $bakidebet) * 100;
+        }else{
+            $npl = 0;
+        }
 
         return [
             Stat::make('Bakidebet Kredit', number_format($bakidebet, 2))
@@ -51,7 +57,7 @@ class LoanWidget extends BaseWidget
                 ->chart($pencairanPerDay)
                 ->color('success'),
 
-            Stat::make('Non Performing Loan', number_format(($nonperform / $bakidebet) * 100,2)."%")
+            Stat::make('Non Performing Loan', number_format($npl ,2)."%")
                 ->descriptionIcon('heroicon-m-credit-card', IconPosition::Before)
                 ->description('Non Performing Loan')
                 ->color(Color::Rose)
