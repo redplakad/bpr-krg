@@ -54,8 +54,9 @@ class PenagihanResource extends Resource
     {
         $datadate = Setting::where('name', 'DATADATE')->first();
         
+        // update penambahan cab filter 
         $cab = auth()->user()->branch_code;
-        
+
         return $form
             ->schema([
                 //
