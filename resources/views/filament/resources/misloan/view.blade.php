@@ -168,54 +168,145 @@
     </div>
 
     <div class="bg-white rounded-lg border shadow-md p-4 transition-transform duration-300 w-full">
-        <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 border-b border-gray-900">
-            <div>
-                <div class="grid grid-cols-1">
-                    <div class="p-4 font-semibold">
-                        ALAMAT LENGKAP
-                    </div>
-                    <div class="p-4">
-                        {{ $record->ALAMAT }} {{ $record->KELURAHAN }} {{ $record->KECAMATAN }}
-                    </div>
-                </div>
-            </div>
-        </div>
-
         
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <div>
-                <div class="grid grid-cols-1">
-                    <div class="p-4 font-semibold">
-                        TEMPAT BEKERJA
-                    </div>
-                    <div class="p-4">
-                        {{ $record->TEMPAT_BEKERJA }}
-                    </div>
-                </div>
-            </div>
+    
+<!-- Tabs -->
+<div
+x-data="{
+    selectedId: null,
+    init() {
+        // Set the first available tab on the page on page load.
+        this.$nextTick(() => this.select(this.$id('tab', 1)))
+    },
+    select(id) {
+        this.selectedId = id
+    },
+    isSelected(id) {
+        return this.selectedId === id
+    },
+    whichChild(el, parent) {
+        return Array.from(parent.children).indexOf(el) + 1
+    }
+}"
+x-id="['tab']"
+>
+<!-- Tab List -->
+<ul
+    x-ref="tablist"
+    @keydown.right.prevent.stop="$focus.wrap().next()"
+    @keydown.home.prevent.stop="$focus.first()"
+    @keydown.page-up.prevent.stop="$focus.first()"
+    @keydown.left.prevent.stop="$focus.wrap().prev()"
+    @keydown.end.prevent.stop="$focus.last()"
+    @keydown.page-down.prevent.stop="$focus.last()"
+    role="tablist"
+    class="-mb-px flex items-stretch"
+>
+<!-- Tab -->
+    <li>
+        <button
+            :id="$id('tab', whichChild($el.parentElement, $refs.tablist))"
+            @click="select($el.id)"
+            @mousedown.prevent
+            @focus="select($el.id)"
+            type="button"
+            :tabindex="isSelected($el.id) ? 0 : -1"
+            :aria-selected="isSelected($el.id)"
+            :class="isSelected($el.id) ? 'border-gray-200 bg-white' : 'border-transparent'"
+            class="inline-flex rounded-t-md border-t border-l border-r px-5 py-2.5"
+            role="tab"
+        >Alamat</button>
+    </li>
 
-            <div>
-                <div class="grid grid-cols-1">
-                    <div class="p-4 font-semibold">
-                        NOMOR TELPON
-                    </div>
-                    <div class="p-4 text-gray-900">
-                        {{ $record->NO_HP }}
-                    </div>
-                </div>
-            </div>
+    <li>
+        <button
+            :id="$id('tab', whichChild($el.parentElement, $refs.tablist))"
+            @click="select($el.id)"
+            @mousedown.prevent
+            @focus="select($el.id)"
+            type="button"
+            :tabindex="isSelected($el.id) ? 0 : -1"
+            :aria-selected="isSelected($el.id)"
+            :class="isSelected($el.id) ? 'border-gray-200 bg-white' : 'border-transparent'"
+            class="inline-flex rounded-t-md border-t border-l border-r px-5 py-2.5"
+            role="tab"
+        >Histori</button>
+    </li>
+</ul>
 
-            <div>
-                <div class="grid grid-cols-1">
-                    <div class="p-4 font-semibold">
-                        PETUGAS AO
-                    </div>
-                    <div class="p-4 text-gray-900">
-                        {{ $record->AO }}
-                    </div>
+<!-- Panels -->
+<div role="tabpanels" class="">
+<!-- Panel -->
+    <section
+        x-show="isSelected($id('tab', whichChild($el, $el.parentElement)))"
+        :aria-labelledby="$id('tab', whichChild($el, $el.parentElement))"
+        role="tabpanel"
+        class="p-8"
+    >
+    <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 border-b border-gray-900">
+        <div>
+            <div class="grid grid-cols-1">
+                <div class="p-4 font-semibold">
+                    ALAMAT LENGKAP
+                </div>
+                <div class="p-4">
+                    {{ $record->ALAMAT }} {{ $record->KELURAHAN }} {{ $record->KECAMATAN }}
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div>
+            <div class="grid grid-cols-1">
+                <div class="p-4 font-semibold">
+                    TEMPAT BEKERJA
+                </div>
+                <div class="p-4">
+                    {{ $record->TEMPAT_BEKERJA }}
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="grid grid-cols-1">
+                <div class="p-4 font-semibold">
+                    NOMOR TELPON
+                </div>
+                <div class="p-4 text-gray-900">
+                    {{ $record->NO_HP }}
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="grid grid-cols-1">
+                <div class="p-4 font-semibold">
+                    PETUGAS AO
+                </div>
+                <div class="p-4 text-gray-900">
+                    {{ $record->AO }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section
+    x-show="isSelected($id('tab', whichChild($el, $el.parentElement)))"
+    :aria-labelledby="$id('tab', whichChild($el, $el.parentElement))"
+    role="tabpanel"
+    class="p-8"
+>
+    <h2 class="text-xl font-bold">Tab 2 Content</h2>
+    <p class="mt-2 text-gray-500">Fugiat odit alias, eaque optio quas nobis minima reiciendis voluptate dolorem nisi facere debitis ea laboriosam vitae omnis ut voluptatum eos. Fugiat?</p>
+    <button class="mt-5 rounded-md border border-gray-200 px-4 py-2 text-sm">Something else focusable</button>
+</section>
+</div>
+</div>
+
+
     </div>
 
     <div class="fi-ac gap-3 flex flex-wrap items-center justify-start">
