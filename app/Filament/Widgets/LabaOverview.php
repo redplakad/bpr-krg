@@ -21,21 +21,37 @@ class LabaOverview extends BaseWidget
         $cab = auth()->user()->branch_code;
 
    
-        $labaRecord = NeracaHarian::where('NOMOR_REKENING', '10100')->first();
-        $laba = $labaRecord->SALDO_AKHIR ?? 10;
+        $labaRecord = NeracaHarian::where('NOMOR_REKENING', '31002')
+                        ->where('DATADATE', $datadate)
+                        ->where('CAB', $cab)
+                        ->first();
+        $laba = $labaRecord->SALDO_AKHIR ?? 0;
+
+        $PendapatanRecord = NeracaHarian::where('NOMOR_REKENING', '40000')
+                            ->where('DATADATE', $datadate)
+                            ->where('CAB', $cab)
+                            ->first();
+        $pendapatan = $PendapatanRecord->SALDO_AKHIR ?? 0;
+        
+        $BebanRecord = NeracaHarian::where('NOMOR_REKENING', '50000')
+                        ->where('DATADATE', $datadate)
+                        ->where('CAB', $cab)
+                        ->first();
+
+        $beban = $BebanRecord->SALDO_AKHIR ?? 0;
 
         return [
-            Stat::make('Laba Berjalan', number_format(100000000, 2))
+            Stat::make('Laba Berjalan', number_format($pendapatan - $beban, 2))
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Laba aktual') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Amber),
                 
-            Stat::make('Pendapatan', number_format($laba, 2))
+            Stat::make('Pendapatan', number_format($pendapatan, 2))
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Pendapatan Bulan Ini') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Teal),
 
-            Stat::make('Beban', number_format($laba, 2))
+            Stat::make('Beban', number_format($beban, 2))
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Beban Bulan Ini') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Orange),
