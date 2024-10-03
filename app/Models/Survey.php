@@ -57,4 +57,9 @@ class Survey extends Model
             ]
         );
     }
+
+    protected $casts = [
+        'petugas_ao' => 'array',
+        'koordinat' => 'array'
+    ];
 }

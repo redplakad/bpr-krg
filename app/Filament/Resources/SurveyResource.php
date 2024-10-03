@@ -13,6 +13,10 @@ use Filament\Forms\Components\Hidden;
 use App\Filament\Resources\SurveyResource\Pages;
 use Illuminate\Contracts\Support\Htmlable;
 
+
+use Dotswan\MapPicker\Fields\Map;
+use Dotswan\MapPicker\Infolists\MapEntry;
+
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
@@ -118,9 +122,41 @@ class SurveyResource extends Resource
                 ->image() // Specify that this is an image upload
                 ->nullable()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp']),
             
-            Forms\Components\TextInput::make('koordinat')
-                ->required()
-                ->label('Koordinat'),
+
+            Map::make('koordinat')
+                ->label('Location')
+                ->columnSpanFull()
+                ->defaultLocation(latitude: -6.138631512906572, longitude: 106.29293376660354)
+                ->afterStateUpdated(function (?array $state, $record): void {
+                    if ($record) {
+                        $record->latitude = $state['lat'];
+                        $record->longitude = $state['lng'];
+                    }
+                })
+                ->afterStateHydrated(function ($state, $record): void {
+                    if ($record && $record->latitude && $record->longitude) {
+                        $state['location'] = ['lat' => $record->latitude, 'lng' => $record->longitude];
+                    } else {
+                        $state['location'] = ['lat' => 40.4168, 'lng' => -3.7038]; // Default location
+                    }
+                })
+                ->extraStyles([
+                    'min-height: 50vh',
+                    'border-radius: 10px'
+                ])
+                ->showMarker()
+                ->markerColor("#22c55eff")
+                ->showFullscreenControl()
+                ->showZoomControl()
+                ->draggable()
+                ->tilesUrl("https://tile.openstreetmap.de/{z}/{x}/{y}.png")
+                ->zoom(15)
+                ->detectRetina()
+                ->extraTileControl([])
+                ->extraControl([
+                    'zoomDelta'           => 1,
+                    'zoomSnap'            => 2,
+                ]),
         ]);
     }
 

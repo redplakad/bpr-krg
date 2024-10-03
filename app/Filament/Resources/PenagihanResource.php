@@ -174,12 +174,12 @@ class PenagihanResource extends Resource
                         'sudah bayar' => 'success',
                     }),
                     */
-                ImageColumn::make('foto1')->label('foto1'),
-                //ImageColumn::make('foto1')->label('foto2'),
-                //ImageColumn::make('foto1')->label('foto3'),
+                TextColumn::make('hasil_kunjungan')->label('Hasil Kunjungan'),
+                ImageColumn::make('foto1')->label('Foto Debitur'),
+                ImageColumn::make('foto2')->label('Foto Rumah'),
                 //ImageColumn::make('foto1')->label('foto4'),
-                TextColumn::make('koordinat')->label('Koordinat'),
-                //TextColumn::make('created_at')->label('Dibuat Pada')->dateTime(),
+                //TextColumn::make('koordinat')->label('Koordinat'),
+                TextColumn::make('created_at')->label('Dibuat Pada')->dateTime(),
                 //TextColumn::make('updated_at')->label('Diperbarui Pada')->dateTime(),
             ])
             ->filters([

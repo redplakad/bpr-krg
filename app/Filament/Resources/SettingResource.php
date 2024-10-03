@@ -16,6 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
 use Illuminate\Support\Facades\Artisan;
 
+
+use Dotswan\MapPicker\Fields\Map;
+use Dotswan\MapPicker\Infolists\MapEntry;
+
 class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;

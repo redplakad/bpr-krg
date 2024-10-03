@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9097306e00d4e09e834cacf2d831e0d8",
+    "content-hash": "e688bfafe79bcb52b49d7847c19f0ac8",
     "packages": [
         {
             "name": "aabosham/filament-google-maps-marker",
@@ -9063,6 +9063,62 @@
                 }
             ],
             "time": "2022-03-08T17:03:00+00:00"
+        },
+        {
+            "name": "webbingbrasil/filament-advancedfilter",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webbingbrasil/filament-advancedfilter.git",
+                "reference": "371ead558a7c3b6a195ade024a54d78da2c894d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webbingbrasil/filament-advancedfilter/zipball/371ead558a7c3b6a195ade024a54d78da2c894d7",
+                "reference": "371ead558a7c3b6a195ade024a54d78da2c894d7",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Webbingbrasil\\FilamentAdvancedFilter\\FilamentAdvancedFilterProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webbingbrasil\\FilamentAdvancedFilter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danilo Andrade",
+                    "email": "danilo@webbingbrasil.com.br",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Advanced filter component for filament admin.",
+            "homepage": "https://github.com/webbingbrasil/filament-advancedfilter",
+            "keywords": [
+                "filament",
+                "filter",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/webbingbrasil/filament-advancedfilter/issues",
+                "source": "https://github.com/webbingbrasil/filament-advancedfilter/tree/v3.0.0"
+            },
+            "time": "2023-10-23T12:11:46+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -24,6 +24,7 @@ use Filament\Tables\Filters\SelectFilter;
 
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\NumberFilter;
 
 class MisLoanResource extends Resource
 {
@@ -86,6 +87,8 @@ class MisLoanResource extends Resource
                         ->searchable(),
                 TextColumn::make('KODE_KOLEK')->label('Kol')
                         ->sortable(),
+                TextColumn::make('JML_HARI_TUNGGAKAN')->label('Durasi')
+                        ->sortable(),
                 TextColumn::make('POKOK_PINJAMAN')->label('Bakidebet')
                         ->formatStateUsing(fn($state) => number_format($state, 2, ',', '.')) // Format angka dengan pemisah ribuan
                         ->sortable(),
@@ -121,6 +124,8 @@ class MisLoanResource extends Resource
                 )
                 ->searchable()
                 ->label('KODE AO'),
+                NumberFilter::make('JML_HARI_TUNGGAKAN')
+                ->label("Durasi"),
             ])
             ->actions([
                 //Tables\Actions\EditAction::make(),
