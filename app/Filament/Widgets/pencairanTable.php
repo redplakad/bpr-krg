@@ -23,7 +23,7 @@ use Filament\Resources\Resource;
 
 use Carbon\Carbon;
 
-class PencairanTable extends BaseWidget implements form
+class PencairanTable extends BaseWidget
 {
 
     protected static ?string $model = MisLoan::class;
