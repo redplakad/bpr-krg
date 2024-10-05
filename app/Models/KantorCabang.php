@@ -9,7 +9,7 @@ class KantorCabang extends Model
 {
     use HasFactory;
 
-    protected $table = 'kinerja';
+    protected $table = 'kantorcabang';
 
     // Specify which attributes are mass assignable
     protected $fillable = [

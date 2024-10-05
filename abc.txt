@@ -1,0 +1,276 @@
+[33mcommit 20cdd1f9d69a01ae85cefe4adb60d4dbb125ec7e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Sat Oct 5 12:51:09 2024 +0700
+
+    perbaikan minor error pada RencanaBisnis
+
+[33mcommit 211d7eeac6a4c95b7c28ad0e9ffe56a83271f3bb[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Sat Oct 5 12:49:46 2024 +0700
+
+    adjustment pengaturan dependencies
+
+[33mcommit 1efc6ccb5e6839f035112f3358ffeb46aa0c614c[m[33m ([m[1;32mfeature/permission[m[33m)[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Sat Oct 5 12:27:06 2024 +0700
+
+    penambahan resource input nominal rbb
+
+[33mcommit 908e9ba53d648fd378ba6ef0a0d53e5ac4d7dfac[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Sat Oct 5 07:44:30 2024 +0700
+
+    add
+
+[33mcommit 84746a26dcfae4001009bac237d6dbd66fdc4d71[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Fri Oct 4 05:43:53 2024 +0700
+
+    minor update
+
+[33mcommit aef67dd5b4f0dec9c7131df115bbd5cecbec50a4[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Oct 3 15:44:58 2024 +0700
+
+    minor update
+
+[33mcommit c60653aeb2a6e0ded1bc5919fcd85bcd3a316b02[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Oct 3 10:56:33 2024 +0700
+
+    fix laba overview stat
+
+[33mcommit e7a92d04bbbe01bff93009e9383e99588b8d79c7[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Thu Oct 3 06:49:01 2024 +0700
+
+    update minor
+
+[33mcommit 2c8f305114d419fe86b1f1fcfc7039173d7992b2[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Oct 2 16:25:27 2024 +0700
+
+    update
+
+[33mcommit d666b89743a0a1917d5c0efeb0ddc1309433a0f9[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Oct 2 16:19:22 2024 +0700
+
+    update
+
+[33mcommit 6f3b4fcb68e213e6e9797ed4e548264d91ee83c4[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Oct 2 10:18:43 2024 +0700
+
+    update
+
+[33mcommit c0cdfc8f8dbf77b66257d9eef2277ffa23e34c12[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Wed Oct 2 06:50:08 2024 +0700
+
+    update laba
+
+[33mcommit 10a5ab4b246e9bf3152dee83a7d1925f62f0ebf1[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Oct 1 17:13:03 2024 +0700
+
+    add more feature
+
+[33mcommit 7ae1922391ea1dc174415b03e502e91ae01d97a9[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Oct 1 08:38:00 2024 +0700
+
+    update minor
+
+[33mcommit bef201a0087b61f5af5df5945d75902d5c77ecf9[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Mon Sep 30 07:10:21 2024 +0700
+
+    add neraca resources
+
+[33mcommit 59efb6fce97175133bae140ac69d58ed31f00f60[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Sun Sep 29 12:16:44 2024 +0700
+
+    update npl
+
+[33mcommit df6e15919d87b9cf0e8b1fb440c08578a47817d2[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Fri Sep 27 17:01:10 2024 +0700
+
+    update add neraca harian
+
+[33mcommit 5ba077a1be3e9b874d94e2e1dd0149a48ebcf6f1[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Sep 26 15:21:59 2024 +0700
+
+    update minor
+
+[33mcommit 0879388fdb1b21e1e5d3c9ceb93d111c891bbf84[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Sep 26 15:20:30 2024 +0700
+
+    update minor
+
+[33mcommit d7607c5f25e2777544fd4700d1f5dd27cb8a05a3[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Sep 26 15:10:26 2024 +0700
+
+    update minor
+
+[33mcommit a840d30d534c26221860553ddf58ce3783584848[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Thu Sep 26 11:01:16 2024 +0700
+
+    menghilangkan cache pada statWidget Kredit agar ketika DATADATE dirubah, nilai dari statWidget tersebut langsung terupdate
+
+[33mcommit 82571e75a3616ae16990ee95846b44458d40b282[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Thu Sep 26 03:47:42 2024 +0700
+
+    minor update
+
+[33mcommit 39be9456396bcc6458db6018333ad209a18392e5[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Wed Sep 25 06:57:39 2024 +0700
+
+    minor update
+
+[33mcommit bb70a64c90db29ce29c9188a0573c20cbd1dde8c[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Sep 25 16:16:30 2024 +0700
+
+    minor update
+
+[33mcommit d5c106a4e9d1ebff4c524811b00069b25be976f1[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Sep 25 16:11:15 2024 +0700
+
+    minor update
+
+[33mcommit 5154044ac22b9f40bfd608aa2bafa83c19a45e8f[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Wed Sep 25 16:02:10 2024 +0700
+
+    minor update
+
+[33mcommit 9ac27d0abd6761d5655d835022ef78fa8f51e22f[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Wed Sep 25 00:41:42 2024 +0700
+
+    add table widget on dashboard
+
+[33mcommit a17905f9092df525ee4f817a40da16bcd08de413[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Sep 24 17:24:59 2024 +0700
+
+    minor update
+
+[33mcommit 8f6ee480856e565ac5cb489bd59242126fe61898[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Sep 24 17:24:25 2024 +0700
+
+    minor update
+
+[33mcommit 80d328c228966c7fd937488d53364e01291268b7[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Sep 24 11:49:08 2024 +0700
+
+    major update
+
+[33mcommit 4e223582dd27b04017828caeece7036475f9abe8[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Tue Sep 24 09:42:44 2024 +0700
+
+    minor update
+
+[33mcommit 19bb0fdf0e70f1fd50c249acda99511d62c528c0[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Tue Sep 24 06:51:40 2024 +0700
+
+    minor update
+
+[33mcommit 298732111fbd738e61c1f79725d5fbf21993ffa2[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Mon Sep 23 07:21:23 2024 +0700
+
+    minor update
+
+[33mcommit ef0d02845d97c59011afb8d13044058d64c8a1da[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Mon Sep 23 06:40:25 2024 +0700
+
+    minor update
+
+[33mcommit bb38e481eee05749e9c3c01b6b06f6ca9f3fda75[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Mon Sep 23 06:18:47 2024 +0700
+
+    update
+
+[33mcommit 982d1fbc465b7b2e481b0b1343f98ac0ef2cb7df[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Mon Sep 23 06:05:35 2024 +0700
+
+    update minor
+
+[33mcommit d5d5f644f692ad147fd1d1d03d211da69a94b8c9[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Sun Sep 22 21:18:33 2024 +0700
+
+    major update
+
+[33mcommit 5c0090865aee63236e684eb40cf885aecce3c8f3[m
+Merge: 20f051c a619035
+Author: redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 22:14:15 2024 +0700
+
+    Merge branch 'main' of https://github.com/redplakad/bpr-krg
+
+[33mcommit a619035e96c4df14a0a1f46daa2f5949ff4cbc09[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 16:35:48 2024 +0700
+
+    minor update
+
+[33mcommit 29b1381301aba6795418d6c0108c24408513b450[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 15:47:00 2024 +0700
+
+    minor update
+
+[33mcommit c2e497550516d906c895db1679201e39871c10b9[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 14:51:13 2024 +0700
+
+    minor update
+
+[33mcommit 70bdd0ddc4ce8189cc9bea12a02c51dc7959809e[m
+Author: Redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 13:10:44 2024 +0700
+
+    minor update
+
+[33mcommit 20f051ce417563bcb30243cfd7c9597db4ac7c24[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 07:14:27 2024 +0700
+
+    update minor
+
+[33mcommit 624c734e37b877f3c83cb2c83f6983e6a6d54469[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Fri Sep 20 06:54:46 2024 +0700
+
+    update
+
+[33mcommit 4d2ee906a5a26b92ba2419ad5169bbdef6d142bc[m
+Author: redplakad <redplakad@gmail.com>
+Date:   Thu Sep 19 19:34:31 2024 +0700
+
+    first commit
+
+[33mcommit f8440e1f58975662783225ffe8ae8d8bbe5b316b[m
+Author: Galih Setiabudi <redplakad@gmail.com>
+Date:   Thu Sep 19 15:24:02 2024 +0700
+
+    Initial commit

@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use App\Models\KantorCabang;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -14,6 +16,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Contracts\Support\Htmlable;
+
 
 class UserResource extends Resource
 {
@@ -62,8 +65,10 @@ class UserResource extends Resource
                 ->directory('images')
                 ->preserveFilenames()
                 ->nullable(),
-            Forms\Components\TextInput::make('branch_code')
-                ->required(),
+            Select::make('branch_code')
+                ->label('Kode Cabang')
+                ->options(KantorCabang::all()
+                    ->pluck('nama','kode')),
         ]);
     }
 
