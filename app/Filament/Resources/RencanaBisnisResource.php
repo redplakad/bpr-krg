@@ -31,11 +31,6 @@ class RencanaBisnisResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Input Rencana Bisnis';
 
-    public static function canAccess(): bool
-    {
-        return auth()->user()->canManageSettings();
-    }
-
     public static function form(Form $form): Form
     {
         return $form
