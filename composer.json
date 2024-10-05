@@ -25,6 +25,7 @@
         "leandrocfe/filament-apex-charts": "3.1",
         "livewire/livewire": "^3.5",
         "rmsramos/activitylog": "^1.0",
+        "ruelluna/canvas-pointer": "*",
         "webbingbrasil/filament-advancedfilter": "3.0"
     },
     "require-dev": {

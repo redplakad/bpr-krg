@@ -17,9 +17,13 @@ use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Infolist;
 use App\Filament\Resources\MisLoanResource\Pages;
 
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+
 use Carbon\Carbon;
 
-class PencairanTable extends BaseWidget
+class PencairanTable extends BaseWidget implements form
 {
 
     protected static ?string $model = MisLoan::class;
