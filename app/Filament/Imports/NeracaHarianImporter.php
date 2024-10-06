@@ -34,27 +34,27 @@ class NeracaHarianImporter extends Importer
                 ->label('LVL')
                 ->requiredMapping()
                 ->numeric()
-                ->rules(['required', 'integer']),
+                ->rules(['required', 'numeric']),
             ImportColumn::make('SALDO_AWAL')
                 ->label('SALDO_AWAL')
                 ->requiredMapping()
                 ->numeric()
-                ->rules(['required', 'integer']),
+                ->rules(['required', 'numeric']),
             ImportColumn::make('MUTASI_DEBET')
                 ->label('MUTASI_DEBET')
                 ->requiredMapping()
                 ->numeric()
-                ->rules(['required', 'integer']),
+                ->rules(['required', 'numeric']),
             ImportColumn::make('MUTASI_KREDIT')
                 ->label('MUTASI_KREDIT')
                 ->requiredMapping()
                 ->numeric()
-                ->rules(['required', 'integer']),
+                ->rules(['required', 'numeric']),
             ImportColumn::make('SALDO_AKHIR')
                 ->label('SALDO_AKHIR')
                 ->requiredMapping()
                 ->numeric()
-                ->rules(['required', 'integer']),
+                ->rules(['required', 'numeric']),
         ];
     }
     
