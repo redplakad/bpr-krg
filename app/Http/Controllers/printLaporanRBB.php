@@ -1,43 +1,22 @@
 <?php
 
-namespace App\Filament\Pages;
-use Carbon\Carbon; 
+namespace App\Http\Controllers;
 
-use App\Repositories\LaporanRBB\AssetRepository;
-
-use App\Models\KantorCabang;
 use App\Models\NeracaHarian;
 use App\Models\RencanaBisnis;
+use App\Models\KantorCabang;
 
-use Filament\Pages\Page;
-use Illuminate\Contracts\Support\Htmlable;
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
+use App\Repositories\LaporanRBB\AssetRepository;
 
-class ReportRBB extends Page
+class printLaporanRBB extends Controller
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
-    protected static string $view = 'filament.pages.report-r-b-b';
-
-    protected static ?string $navigationGroup = 'Analisis Data';
-
-    public static function getNavigationLabel(): string
+    //
+    public function print(Request $request, AssetRepository $assetRepo, $type)
     {
-        return 'Laporan RBB'; // Ganti dengan title navigasi yang diinginkan
-    }
-
-    public function getTitle(): string | Htmlable
-    {
-        return __('Laporan RBB');
-    }
-    public static function getPluralLabel(): string
-    {
-        return __('Laporan RBB');
-    }
-
-    public $data = [];
-
-    public function mount(Request $request, AssetRepository $assetRepo): void {
+        $data = [];
         // Retrieve kantor cabang sorted by 'kode'
         $kantorCabang = KantorCabang::orderBy('kode', 'asc')->get();
     
@@ -65,15 +44,15 @@ class ReportRBB extends Page
         
         $kredits = $assetRepo->getAssets($kantorCabang, $latestDate, $lastYearDate, $currentDate, 14000, 'Kredit');
         
-        $tabungans = $assetRepo->getAssets($kantorCabang, $latestDate, $lastYearDate, $currentDate, 22100, 'Tabungan');
+        $tabungans = $assetRepo->getAssets($kantorCabang, $latestDate, $lastYearDate, $currentDate, 22100, 'Tabunga');
         
         $depositos = $assetRepo->getAssets($kantorCabang, $latestDate, $lastYearDate, $currentDate, 22200, 'Deposito');
         
         $labas = $assetRepo->getAssets($kantorCabang, $latestDate, $lastYearDate, $currentDate, 31002, 'Laba');
     
         // Prepare data for the view
-        $this->data = [
-            'url' => ReportRBB::getUrl(),
+        $data = [
+            'url' => '',
             'year' => $year,
             'month' => $month,
             'cabang' => $kantorCabang,
@@ -85,5 +64,7 @@ class ReportRBB extends Page
             'depositos' => $depositos,
             'labas' => $labas
         ];
+
+        return view('filament.pages.print.laporanRbb', compact('data'));
     }
 }

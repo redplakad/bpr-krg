@@ -6,6 +6,7 @@ use App\Http\Controllers\viewNominatifAo;
  
 use App\Http\Controllers\SuratPanggilanController;
 use App\Http\Controllers\DetailNominatifController;
+use App\Http\Controllers\printLaporanRBB;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,8 @@ Route::get('/login', function () {
 Route::get('/admin/surat-panggilan/{id}', [SuratPanggilanController::class, 'print'])
     ->name('filament.admin.surat-panggilan');
 
+Route::get('/admin/print-rbb/{type}', [printLaporanRBB::class, 'print'])
+    ->name('filament.admin.print.rbb');
+
 Route::get('/admin/nominatif-ao/{slug}', [viewNominatifAo::class, 'index'])->name('NominatifAo');
-Route::get('/admin/detail-nominatif/{slug}', [DetailNominatifController::class, 'index'])->name('detailNominatif');
+//Route::get('/admin/detail-nominatif/{slug}', [DetailNominatifController::class, 'index'])->name('detailNominatif');
