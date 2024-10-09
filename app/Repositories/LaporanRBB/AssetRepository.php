@@ -43,7 +43,7 @@ class AssetRepository
 
             // Store data in assets array
             $assets[] = [
-                'cabang' => $i->kode,
+                'cabang' => $i->nama,
                 'aktualTahunIni' => optional($aktualTahunIni)->SALDO_AKHIR ?? 0,
                 'rbb' => $rbb,
                 'aktualTahunLalu' => optional($aktualTahunLalu)->SALDO_AKHIR ?? 0,
