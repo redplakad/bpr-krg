@@ -1,48 +1,3 @@
-<x-filament-panels::page @class([
-    'fi-resource-view-record-page',
-    'fi-resource-' . str_replace('/', '-', $this->getResource()::getSlug()),
-    'fi-resource-record-' . $record->getKey(),
-])>
-
-    @push('custom-css')
-    @media print {
-        <style>
-            /* Modal Styles */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1000; /* Sit on top */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
-            }
-            .modal-content {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-            }
-            .close {
-                position: absolute;
-                top: 20px;
-                right: 35px;
-                color: #f1f1f1;
-                font-size: 40px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-            .close:hover,
-            .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
-            }
-        </style>
-    }
-    @endpush
     <div id="printarea" class="bg-white rounded-lg border shadow-md p-6 transition-transform duration-300 w-96"
         :class="hovered ? 'transform scale-105 shadow-md' : ''">
         <h2 class="text-lg font-semibold mb-4">Detail Penagihan a.n {{ $record->nama_debitur }}</h2>
@@ -207,23 +162,3 @@
             </div>
         </div>
     </div>
-    
-    <div class="fi-ac gap-3 flex flex-wrap items-center justify-start">
-        <x-filament::button 
-        icon="heroicon-o-arrow-left-end-on-rectangle"
-        href="../../{{ str_replace('/', '-', $this->getResource()::getSlug()) }}"
-        tag="a"
-        color="gray"
-    >
-        Kembali
-    </x-filament::button>    
-    <x-filament::button 
-        icon="heroicon-o-printer"
-        href="../../{{ str_replace('/', '-', $this->getResource()::getSlug()) }}/{{ $record->id }}/print"
-        tag="a"
-        color="info"
-    >
-        Print
-    </x-filament::button>
-    </div>
-</x-filament-panels::page>

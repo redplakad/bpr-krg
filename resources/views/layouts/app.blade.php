@@ -29,6 +29,7 @@
  
         @filamentStyles
         @vite('resources/css/app.css')
+        @stack('custom-css')
     </head>
  
     <body class="antialiased">
@@ -36,5 +37,6 @@
  
         @filamentScripts
         @vite('resources/js/app.js')
+        @stack('custom-js')
     </body>
 </html>

@@ -61,5 +61,4 @@
                 </tbody>
             </table>
         </div>
-    </div>        
-</x-filament-panels::page>
+    </div>     

@@ -210,6 +210,7 @@ class PenagihanResource extends Resource
             'create' => Pages\CreatePenagihan::route('/create'),
             'edit' => Pages\EditPenagihan::route('/{record}/edit'),
             'view' => Pages\ViewPenagihan::route('/{record}/view'),
+            'print' => Pages\PrintPenagihan::route('/{record}/print'),
         ];
     }
 }
