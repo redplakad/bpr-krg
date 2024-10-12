@@ -26,7 +26,7 @@ class LabaOverview extends BaseWidget
                         ->where('CAB', $cab)
                         ->first();
 
-        $laba = $labaRecord->SALDO_AKHIR ?? 0;
+        $laba = $labaRecord->SALDO_AKHIR ?? 0; // ini adalah perubahan penghitungan laba yang sebelumnya pendapatan - beban
 
         $PendapatanRecord = NeracaHarian::where('NOMOR_REKENING', '40000')
                             ->where('DATADATE', $datadate)
