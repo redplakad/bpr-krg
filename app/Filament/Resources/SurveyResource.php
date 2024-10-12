@@ -118,7 +118,7 @@ class SurveyResource extends Resource
                 ->nullable()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp']),
             
             Forms\Components\FileUpload::make('foto_jaminan2')
-                ->label('Foto Jaminan 2')
+                ->label('Foto Akad')
                 ->image() // Specify that this is an image upload
                 ->nullable()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp']),
             
@@ -178,6 +178,9 @@ class SurveyResource extends Resource
                 Tables\Columns\TextColumn::make('jenis_jaminan')
                         ->sortable(),
                 Tables\Columns\ImageColumn::make('foto_debitur')
+                        ->sortable(),
+                Tables\Columns\ImageColumn::make('foto_jaminan2')
+                        ->label('Foto Akad')
                         ->sortable(),
         ])
             ->filters([
