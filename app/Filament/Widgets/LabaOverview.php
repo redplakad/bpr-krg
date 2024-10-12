@@ -42,7 +42,7 @@ class LabaOverview extends BaseWidget
         $beban = $BebanRecord->SALDO_AKHIR ?? 0;
 
         return [
-            Stat::make('Laba Berjalan', number_format($laba, 2))
+            Stat::make('Laba Berjalan', number_format($laba, 2)) // perubahan perhitungan laba
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Laba aktual') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Amber),
