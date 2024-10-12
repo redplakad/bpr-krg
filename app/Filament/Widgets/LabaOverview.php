@@ -25,6 +25,7 @@ class LabaOverview extends BaseWidget
                         ->where('DATADATE', $datadate)
                         ->where('CAB', $cab)
                         ->first();
+
         $laba = $labaRecord->SALDO_AKHIR ?? 0;
 
         $PendapatanRecord = NeracaHarian::where('NOMOR_REKENING', '40000')
@@ -41,7 +42,7 @@ class LabaOverview extends BaseWidget
         $beban = $BebanRecord->SALDO_AKHIR ?? 0;
 
         return [
-            Stat::make('Laba Berjalan', number_format($pendapatan - $beban, 2))
+            Stat::make('Laba Berjalan', number_format($laba, 2))
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->description('Laba aktual') // Pastikan Anda mengisi chart ini jika ada datanya.
                 ->color(Color::Amber),
