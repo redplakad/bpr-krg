@@ -3,19 +3,14 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
-
-
-use App\Models\MisLoan;
-use App\Models\Setting;
-use App\Models\User;
-
-use DB;
 use App\Repositories\NonPerformingLoan;
 
 use App\Filament\Resources\MisLoanResource\Pages;
 use Filament\Resources\Resource;
 use App\Filament\Widgets\LoanWidget;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Http\Request;
+
 class nplAO extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -47,12 +42,18 @@ class nplAO extends Page
         ];
     }
 
-    public function mount(NonPerformingLoan $NonPerformingLoan): void {
+    public function mount(NonPerformingLoan $NonPerformingLoan, Request $request): void {
         $cab = auth()->user()->branch_code;
-        
+        if(empty($request->query('detail'))){
+            $request = '';
+        }else{
+            $request = $request->query('detail');
+        }
+
         $this->data = [
             'loan-ao' => $NonPerformingLoan->LoanAo($cab),
             'loan-ao-kol' => $NonPerformingLoan->LoanAoKolek($cab),
+            'request' => $request,
         ];
     }
 }

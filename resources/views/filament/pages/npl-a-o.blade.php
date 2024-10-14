@@ -1,11 +1,12 @@
 <x-filament-panels::page>
+    @if(empty($data['request']))
     <h1 class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">NPL PER ACCOUNT OFFICER</h1>
     <div class="bg-white rounded-lg border shadow-md p-4 transition-transform duration-300 w-full dark:bg-gray-800 dark:border-gray-700">     
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-white">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-white">
                     <tr>
-                        <th scope="col" class="px-6 py-3">PRODUK</th>
+                        <th scope="col" class="px-6 py-3">Account Officer</th>
                         <th scope="col" class="px-6 py-3">DEBITUR</th>
                         <th scope="col" class="px-6 py-3">BAKIDEBET</th>
                         <th scope="col" class="px-6 py-3">NPL</th>
@@ -16,7 +17,7 @@
                     @foreach ($data['loan-ao'] as $loan)
                     <tr class="{{ $loop->last ? 'bg-white hover:bg-gray-50 dark:bg-gray-900 hover:dark:bg-gray-800' : 'bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 hover:dark:bg-gray-800' }}">
                         <td class="fi-ta-text grid gap-y-1 px-3 py-4 dark:text-white">
-                            {{ $loan->AO }}
+                            <a href="{{ url()->current(); }}?detail={{ $loan->AO }}">{{ $loan->AO }}</a>
                         </td>
                         <td class="px-6 py-4 dark:text-white">{{ number_format($loan->total_debitur) }}</td>
                         <td class="px-6 py-4 dark:text-white">Rp. {{ number_format($loan->total_pokok, 2) }}</td>
@@ -62,6 +63,8 @@
             </table>
         </div>
     </div>
-
-    @livewire('nominatif-ao', ['slug' => '1234'])
+    @endif
+    @if(!empty($data['request']))
+        @livewire('nominatif-ao', ['slug' => '1234'])
+    @endif
 </x-filament-panels::page>
