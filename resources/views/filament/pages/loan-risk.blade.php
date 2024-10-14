@@ -13,19 +13,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data['loan-produk'] as $loan)
-                    <tr class="{{ $loop->last ? 'bg-white hover:bg-gray-50 dark:bg-gray-900 hover:dark:bg-gray-800' : 'bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 hover:dark:bg-gray-800' }}">
-                        <td class="fi-ta-text grid gap-y-1 px-3 py-4 dark:text-white">
-                            {{ $loan->KET_KD_PRD }}
-                        </td>
-                        <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_debitur,0) }}</td>
-                        <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_pokok, 2) }}</td>
-                        <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_npl, 2) }}</td>
-                        <td class="px-6 py-4 dark:text-white text-right">
-                            {{ $loan->total_pokok > 0 ? number_format(($loan->total_npl / $loan->total_pokok) * 100, 2) : '0.00' }}%
-                        </td>
-                    </tr>
-                    @endforeach
+                    @if(!empty($data['loan-produk-kol']))
+                        @foreach ($data['loan-produk-kol'] as $loan)
+                        <tr class="{{ $loop->last ? 'bg-white hover:bg-gray-50 dark:bg-gray-900 hover:dark:bg-gray-800' : 'bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 hover:dark:bg-gray-800' }}">
+                            <td class="fi-ta-text grid gap-y-1 px-3 py-4 dark:text-white">
+                                {{ $loan->KET_KD_PRD ?? 'N/A' }}
+                            </td>
+                            <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_1 ?? 0, 2) }}</td>
+                            <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_2 ?? 0, 2) }}</td>
+                            <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_3 ?? 0, 2) }}</td>
+                            <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_4 ?? 0, 2) }}</td>
+                            <td class="px-6 py-4 dark:text-white text-right">{{ number_format($loan->total_5 ?? 0, 2) }}</td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="text-center">No data available</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -62,3 +67,4 @@
             </table>
         </div>
     </div>     
+</x-filament-panels::page>
