@@ -20,6 +20,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "konnco/filament-import": "^1.6",
         "laravel/framework": "^10.10",
+        "laravel/octane": "^2.7",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "leandrocfe/filament-apex-charts": "3.1",
